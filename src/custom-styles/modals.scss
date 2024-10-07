@@ -1,0 +1,109 @@
+/* MODAL BTN
+
+<button type="button" class="cstm-btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Open Modal
+</button>
+
+*/
+
+/* MODAL
+
+<div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="material-symbols-outlined fake-element"> arrow_back </span>
+        <span class="modal-title">Modal title</span>
+        <button type="button" class="cstm-modal-close-btn" data-bs-dismiss="modal" aria-label="Close"><span
+            class="material-symbols-outlined">close</span></button>
+      </div>
+      <div class="modal-body">
+        Modal Body
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="cstm-btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="cstm-btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+*/
+
+
+/* SIDE MODAL - OFF CANVAS
+
+<div class="offcanvas offcanvas-start" id="menu-offcanvas" tabindex="-1" aria-hidden="true">
+  <div class="offcanvas-content">
+    <div class="offcanvas-header">
+      <span class="material-symbols-outlined fake-element"> arrow_back </span>
+      <span class="modal-title">OffCanvas title</span>
+      <button type="button" class="cstm-modal-close-btn" data-bs-dismiss="offcanvas" aria-label="Close"><span
+          class="material-symbols-outlined">close</span></button>
+    </div>
+    <div class="offcanvas-body">
+      Offcanvas Body
+    </div>
+  </div>
+</div>
+
+*/
+
+.modal-backdrop {
+  background-color: var(--primary-950);
+}
+
+.modal-dialog {
+  min-width: 40vw;
+}
+
+.modal-content {
+  background-color: var(--background-50);
+  color: var(--text-950);
+
+  border-radius: 1rem;
+}
+
+.offcanvas-content {
+  background-color: var(--background-50);
+  color: var(--text-950);
+
+  height: 100%;
+}
+
+.modal-header,
+.offcanvas-header {
+  border-bottom: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 2rem;
+}
+
+.modal-title {
+  width: 100%;
+  text-align: center;
+
+  font-weight: var(--bold);
+  font-size: 1.2rem;
+}
+
+.cstm-modal-close-btn {
+  margin-left: auto;
+  outline: 0;
+  border: none;
+  background-color: transparent;
+  color: var(--text-950);
+}
+
+.modal-body,
+.offcanvas-body {
+  padding: 2rem;
+  min-height: 20vh;
+}
+
+.modal-footer {
+  padding: 1rem;
+  border-top: none;
+}

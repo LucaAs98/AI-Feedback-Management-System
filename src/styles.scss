@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+@import url(custom-styles/fonts.scss);
+@import url(custom-styles/colors.scss);
+@import url(custom-styles/scrollbar.scss);
+@import url(custom-styles/buttons.scss);
+@import url(custom-styles/input-fields.scss);
+@import url(custom-styles/modals.scss);
+@import url(custom-styles/dropdowns.scss);
+
+:root {
+  --navbar-height: 80px;
+}
+
+* {
+  font-family: var(--font);
+  font-weight: var(--regular);
+  font-size: 1rem;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 200,
+    'GRAD' 0,
+    'opsz' 24
+}
+
+.fake-element {
+  visibility: hidden;
+}

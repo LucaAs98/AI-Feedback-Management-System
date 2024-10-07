@@ -1,0 +1,80 @@
+/* INPUT FIELD
+<div class="cstm-input-field-container">
+  <label class="cstm-input-field-label">Label Input Field</label>
+  <input type="text" class="cstm-input-field" placeholder="Input Field" [(ngModel)]="inputFieldVar">
+</div>
+*/
+
+.cstm-input-field-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.cstm-input-field {
+    font-size: 1rem;
+
+    padding: 0.6rem 2rem;
+
+    background-color: var(--background-50);
+    color: var(--text-900);
+
+    border: 1px solid var(--background-800);
+    border-radius: 1.5rem;
+    outline: 0;
+
+    transition: border-color 0.3s;
+}
+
+
+.cstm-input-field:focus {
+    background-color: var(--background-100);
+}
+
+.cstm-input-field-label {
+    color: var(--text-950);
+}
+
+/* SEARCHBAR 
+
+<div class="cstm-input-field cstm-searchbar-container">
+  <input type="text" placeholder="Placeholder input field" class="cstm-input-searchbar"
+    [(ngModel)]="searchInputVar">
+  <button type="button" class="cstm-btn btn-searchbar">
+    <span class="material-symbols-outlined"> search </span>
+  </button>
+</div>
+
+*/
+.cstm-searchbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
+    padding: 0rem;
+}
+
+.cstm-searchbar-container:focus-within {
+    background-color: var(--background-100);
+}
+
+.cstm-input-searchbar {
+    border: none;
+    width: 100%;
+    padding: 0.6rem 2rem;
+    padding-right: 0;
+
+    color: var(--text-900);
+    background-color: transparent;
+}
+
+.cstm-input-searchbar:focus {
+    border: none;
+    outline: 0;
+}
+
+.btn-searchbar {
+    padding: 0rem 1.5rem;
+    background-color: transparent;
+    color: var(--text-900);
+}

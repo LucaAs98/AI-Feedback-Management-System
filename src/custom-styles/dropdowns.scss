@@ -1,0 +1,59 @@
+/* 
+<div class="dropdown">
+  <button type="button" class="cstm-btn btn-primary" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="cstm-btn-text">Primary Dropdown</span>
+    <span class="material-symbols-outlined dropdown-icon"></span>
+  </button>
+
+  <div class="dropdown-menu cstm-dropdown-menu">
+    <button class="dropdown-item cstm-dropdown-item">Action</button>
+    <button class="dropdown-item cstm-dropdown-item">Another action</button>
+    <button class="dropdown-item cstm-dropdown-item">Something else here</button>
+  </div>
+</div>
+*/
+
+
+
+.cstm-dropdown-menu {
+  border-radius: 0.5rem;
+  padding: 0.4rem;
+  width: 100%;
+  background-color: var(--background-50);
+  border: none;
+
+  -webkit-box-shadow: 0px 0px 2px -1px var(--text-950);
+  -moz-box-shadow: 0px 0px 2px -1px var(--text-950);
+  box-shadow: 0px 0px 2px -1px var(--text-950);
+}
+
+.dropdown>[aria-expanded="false"] .dropdown-icon::after {
+  content: "keyboard_arrow_down";
+}
+
+.dropdown>[aria-expanded="true"] .dropdown-icon::after {
+  content: "keyboard_arrow_up";
+}
+
+.cstm-dropdown-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1rem;
+
+  padding: 0.5rem 1rem;
+
+  border-radius: 1.5rem;
+  transition: background-color 0.2s, color 0.2s;
+
+  color: var(--text-950);
+}
+
+.cstm-dropdown-item:hover,
+.cstm-dropdown-item:focus,
+.cstm-dropdown-item:active {
+  background-color: var(--primary-700);
+  color: var(--text-50);
+  border: none;
+  outline: none;
+}
