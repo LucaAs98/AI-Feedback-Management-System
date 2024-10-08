@@ -1,0 +1,20 @@
+.feedback-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.analyze-feedback-btn {
+  margin-left: auto;
+}
+
+.loading-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feedback-response-text {
+  color: var(--primary-500);
+}

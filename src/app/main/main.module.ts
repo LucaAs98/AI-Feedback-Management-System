@@ -4,6 +4,7 @@ import { MainComponent } from './main.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { UtilsModule } from '../utils/utils.module';
 
 const routes: Routes = [
   {
@@ -17,7 +18,12 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [MainComponent, DashboardComponent],
-  imports: [RouterModule.forChild(routes), CommonModule, FormsModule],
+  imports: [
+    RouterModule.forChild(routes),
+    CommonModule,
+    FormsModule,
+    UtilsModule,
+  ],
   exports: [RouterModule],
 })
 export class MainModule {}
