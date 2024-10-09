@@ -1,13 +1,8 @@
 import { Component } from '@angular/core';
-import axios from 'axios';
-
-type AnalyzedFeedback = {
-  sentiment: string;
-  positive_score: number;
-  negative_score: number;
-  neutral_score: number;
-  mixed_score: number;
-};
+import {
+  AnalyzedFeedback,
+  FeedbackService,
+} from '../../services/feedback.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,63 +12,35 @@ type AnalyzedFeedback = {
 export class DashboardComponent {
   feedback: string = '';
   isLoading: boolean = false;
-  result: string = '';
 
   error = '';
-  analyzedFeedback: AnalyzedFeedback = {
-    sentiment: '',
-    positive_score: 0,
-    negative_score: 0,
-    neutral_score: 0,
-    mixed_score: 0,
-  };
+  analyzedFeedback: AnalyzedFeedback | null = null;
 
-  analyzeFeedbackURL = 'http://localhost:8080/feedback';
-  get isResultEmpty() {
-    return this.result.trim().length === 0;
+  constructor(private feedbackService: FeedbackService) {}
+
+  get isAnalyzedFeedbackEmpty() {
+    return this.analyzedFeedback === null;
   }
 
-  async analyzeFeedback() {
+  /**
+   * Handles the process of analyzing feedback
+   *
+   * @returns {Promise<void>} This function does not return a value, but it updates component state.
+   */
+  async analyzeFeedback(): Promise<void> {
     this.isLoading = true;
     this.error = '';
-    this.analyzedFeedback = {
-      sentiment: '',
-      positive_score: 0,
-      negative_score: 0,
-      neutral_score: 0,
-      mixed_score: 0,
-    };
+    this.analyzedFeedback = null;
 
-    try {
-      // TODO: Implement dynamic user_id
-      const response = await axios.post(this.analyzeFeedbackURL, {
-        feedback_text: this.feedback, // Fixed typo in key name
-        user_id: 1, // Placeholder for user_id
-      });
+    // Call the feedbackService's analyzeFeedback method to analyze the current feedback text
+    const response = await this.feedbackService.analyzeFeedback(this.feedback);
 
-      console.log('Feedback analyzed successfully:', response.data);
+    // If the analysis is successful, update the analyzedFeedback with the result else update the message error
+    if (response.success) {
+      this.analyzedFeedback = response.data;
+      console.log('Feedback analyzed successfully:', this.analyzedFeedback);
+    } else this.error = response.error;
 
-      this.analyzedFeedback = {
-        sentiment: response.data.sentiment,
-        positive_score: response.data.positive_score,
-        negative_score: response.data.negative_score,
-        neutral_score: response.data.neutral_score,
-        mixed_score: response.data.mixed_score,
-      };
-    } catch (error: any) {
-      // Check if the error is an instance of AxiosError
-      if (error.isAxiosError) {
-        this.error =
-          error.response?.data?.message || 'An unknown error occurred';
-      } else {
-        this.error = error.message || 'An unknown error occurred';
-      }
-
-      // Log the full error for debugging
-      console.error('Error while analyzing feedback:', error);
-    } finally {
-      // Ensure isLoading is set to false regardless of success or failure
-      this.isLoading = false;
-    }
+    this.isLoading = false;
   }
 }

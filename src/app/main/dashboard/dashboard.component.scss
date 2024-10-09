@@ -15,6 +15,11 @@
   justify-content: center;
 }
 
-.feedback-response-text {
+.feedback-response-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.analyzed-feedback-text {
   color: var(--primary-500);
 }

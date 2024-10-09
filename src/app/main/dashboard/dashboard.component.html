@@ -1,30 +1,29 @@
 <div class="dashboard-root">
-  <div class="feedback-container" *ngIf="!isLoading">
+  <div class="feedback-container">
     <div class="cstm-input-field-container">
       <label class="cstm-input-field-label">Feedback</label>
-      <textarea class="cstm-input-field" placeholder="Insert feedback here..." [(ngModel)]="feedback"></textarea>
+      <textarea class="cstm-input-field" placeholder="Insert feedback here..." [(ngModel)]="feedback"
+        [disabled]="isLoading"></textarea>
     </div>
 
-    <button type="button" class="cstm-btn btn-primary analyze-feedback-btn" (click)="analyzeFeedback()">
+    <button type="button" class="cstm-btn btn-primary analyze-feedback-btn" (click)="analyzeFeedback()"
+      [disabled]="isLoading">
       <span class="cstm-btn-text"> Analyze feedback </span>
     </button>
 
+    <ng-container class="feedback-response-container" *ngIf="!isAnalyzedFeedbackEmpty">
+      <h2 class="analyzed-feedback-title">Feedback Response:</h2>
+      <span class="analyzed-feedback-text">Sentiment: {{analyzedFeedback?.sentiment}}</span>
+      <span class="analyzed-feedback-text">Positive Score: {{analyzedFeedback?.positive_score}}</span>
+      <span class="analyzed-feedback-text">Negative Score: {{analyzedFeedback?.negative_score}}</span>
+      <span class="analyzed-feedback-text">Neutral Score: {{analyzedFeedback?.neutral_score}}</span>
+      <span class="analyzed-feedback-text">Mixed Score: {{analyzedFeedback?.mixed_score}}</span>
+    </ng-container>
+
     <span class="error-message text-danger">{{error}}</span>
-    <span class="feedback-response-text" *ngIf="analyzedFeedback.sentiment.length > 0">
-      <p class="analyzed-feedback-text">Feedback Response:</p>
-      <p class="analyzed-feedback-text">Sentiment: {{analyzedFeedback.sentiment}}</p>
-      <p class="analyzed-feedback-text">Positive Score:{{analyzedFeedback.positive_score}}</p>
-      <p class="analyzed-feedback-text">Negative Score:{{analyzedFeedback.negative_score}}</p>
-      <p class="analyzed-feedback-text">Neutral Score:{{analyzedFeedback.neutral_score}}</p>
-      <p class="analyzed-feedback-text">Mixed Score:{{analyzedFeedback.mixed_score}}</p>
-    </span>
   </div>
 
   <div class="loading-container" *ngIf="isLoading">
     <app-loading-spinner></app-loading-spinner>
-  </div>
-
-  <div class="feedback-result" *ngIf="!isResultEmpty">
-    <span class="result-text">Result!</span>
   </div>
 </div>
