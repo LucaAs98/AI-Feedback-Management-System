@@ -28,10 +28,6 @@
   visibility: hidden;
 }
 
-body {
-  padding: 2rem;
-  height: 100svh;
-  overflow-y: scroll;
-  background-color: var(--background-50);
-  color: var(--text-950);
+h1 {
+  font-weight: var(--bold);
 }

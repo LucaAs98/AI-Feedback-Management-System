@@ -10,6 +10,8 @@ import {
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent {
+  productSearchingName: string = '';
+
   feedback: string = '';
   isLoading: boolean = false;
 

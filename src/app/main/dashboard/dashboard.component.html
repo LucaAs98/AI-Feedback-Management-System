@@ -1,4 +1,35 @@
 <div class="dashboard-root">
+  <div class="choose-product-container">
+    <button class="choose-product-btn">
+      <span class="material-symbols-outlined">movie</span>
+      <span class="product-type-name">Movies</span>
+    </button>
+    <button class="choose-product-btn">
+      <span class="material-symbols-outlined">music_note</span>
+      <span class="product-type-name">Music</span>
+    </button>
+    <button class="choose-product-btn">
+      <span class="material-symbols-outlined">book</span>
+      <span class="product-type-name">Books</span>
+    </button>
+  </div>
+
+  <div class="searchbar-root">
+    <div class="cstm-input-field cstm-searchbar-container">
+      <input type="text" placeholder="Search product..." class="cstm-input-searchbar"
+        [(ngModel)]="productSearchingName">
+      <button type="button" class="cstm-btn btn-searchbar">
+        <span class="material-symbols-outlined"> search </span>
+      </button>
+    </div>
+  </div>
+
+
+
+
+
+
+
   <div class="feedback-container">
     <div class="cstm-input-field-container">
       <label class="cstm-input-field-label">Feedback</label>

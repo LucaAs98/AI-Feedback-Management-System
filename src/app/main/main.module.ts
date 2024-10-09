@@ -5,13 +5,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UtilsModule } from '../utils/utils.module';
+import { NavbarComponent } from './navbar/navbar.component';
 
 const routes: Routes = [
   {
     path: 'main',
+    component: MainComponent,
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ],
   },
 ];
@@ -23,6 +25,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     UtilsModule,
+    NavbarComponent,
   ],
   exports: [RouterModule],
 })
