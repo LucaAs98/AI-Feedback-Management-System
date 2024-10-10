@@ -1,0 +1,8 @@
+<button type="button" class="cstm-btn" (click)="onClick()" [ngClass]="{
+  'btn-primary': type === 'primary',
+  'btn-secondary': type === 'secondary',
+  'btn-accent': type === 'accent'
+}">
+  <span *ngIf="symbol !== null" class="material-symbols-outlined"> {{symbol}} </span>
+  <span class="cstm-btn-text"> {{text}} </span>
+</button>

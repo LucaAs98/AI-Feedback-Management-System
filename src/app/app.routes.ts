@@ -12,7 +12,7 @@ const routes: Routes = [
     path: 'main',
     loadChildren: () => import('./main/main.module').then((x) => x.MainModule),
   },
-  { path: '**', component: PageNotFoundComponent },
+  { path: '**', redirectTo: 'main/dashboard/0', pathMatch: 'full' },
 ];
 
 @NgModule({

@@ -23,7 +23,7 @@
 
 	border: none;
 	outline: none;
-	border-radius: 1.5rem;
+	border-radius: 0.8rem;
 	transition: background-color 0.3s, color 0.3s;
 }
 
@@ -47,8 +47,8 @@
 */
 
 .cstm-btn.btn-primary {
-	background-color: var(--primary-600);
-	color: var(--text-50);
+	background-color: var(--primary-500);
+	color: var(--text-950);
 }
 
 .cstm-btn.btn-primary:hover,

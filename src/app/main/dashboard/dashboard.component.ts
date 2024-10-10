@@ -3,6 +3,8 @@ import {
   AnalyzedFeedback,
   FeedbackService,
 } from '../../services/feedback.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProductService, ProductType } from '../../services/product.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,15 +13,51 @@ import {
 })
 export class DashboardComponent {
   productSearchingName: string = '';
+  selectedProductType: ProductType = ProductType.movies;
+  productType = ProductType;
 
+  //OLD CODE FOR FEEDBACK
   feedback: string = '';
   isLoading: boolean = false;
-
   error = '';
   analyzedFeedback: AnalyzedFeedback | null = null;
+  specificProductId: number | null = null;
 
-  constructor(private feedbackService: FeedbackService) {}
+  constructor(
+    private feedbackService: FeedbackService,
+    private productService: ProductService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
+  async ngOnInit() {
+    this.route.params.subscribe(async (params) => {
+      await this.retrieveProductsFromType(params['product_category']);
+    });
+  }
+
+  async retrieveProductsFromType(productType: ProductType) {
+    this.selectedProductType = productType;
+    if (!Object.values(ProductType).includes(this.selectedProductType)) {
+      this.selectedProductType = ProductType.movies;
+    }
+
+    this.router.navigate([`/main/dashboard/${this.selectedProductType}`]);
+    await this.productService.getProductsOfType(this.selectedProductType);
+  }
+
+  isProductSelected(productType: ProductType) {
+    return this.selectedProductType === productType;
+  }
+
+  setSpecificProductId(productId: number) {
+    this.specificProductId = productId;
+  }
+
+  get getRandomInt(): number {
+    return Math.floor(Math.random() * (5 - 1 + 1)) + 1;
+  }
+  //------------- OLD CODE FOR FEEDBACKS
   get isAnalyzedFeedbackEmpty() {
     return this.analyzedFeedback === null;
   }

@@ -4,6 +4,9 @@
   <input type="text" class="cstm-input-field" placeholder="Input Field" [(ngModel)]="inputFieldVar">
 </div>
 */
+app-cstm-searchbar {
+    width: 100%;
+}
 
 .cstm-input-field-container {
     display: flex;
@@ -20,7 +23,7 @@
     color: var(--text-50);
 
     border: 1px solid var(--background-200);
-    border-radius: 1.5rem;
+    border-radius: 0.8rem;
     outline: 0;
 
     transition: border-color 0.3s;
@@ -28,7 +31,7 @@
 
 
 .cstm-input-field:focus {
-    background-color: var(--background-900);
+    background-color: var(--background-950);
 }
 
 .cstm-input-field-label {

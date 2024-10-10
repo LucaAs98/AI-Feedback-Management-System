@@ -1,33 +1,33 @@
 <div class="dashboard-root">
   <div class="choose-product-container">
-    <button class="choose-product-btn">
-      <span class="material-symbols-outlined">movie</span>
-      <span class="product-type-name">Movies</span>
-    </button>
-    <button class="choose-product-btn">
-      <span class="material-symbols-outlined">music_note</span>
-      <span class="product-type-name">Music</span>
-    </button>
-    <button class="choose-product-btn">
-      <span class="material-symbols-outlined">book</span>
-      <span class="product-type-name">Books</span>
-    </button>
+    <app-choose-product-btn [text]="'Movies'" [symbol]="'movie'"
+      (clicked)="retrieveProductsFromType($event.productType)" [(selectedProductType)]="selectedProductType"
+      [productType]="productType.movies"></app-choose-product-btn>
+
+    <app-choose-product-btn [text]="'Music'" [symbol]="'music_note'"
+      (clicked)="retrieveProductsFromType($event.productType)" [(selectedProductType)]="selectedProductType"
+      [productType]="productType.music"></app-choose-product-btn>
+
+    <app-choose-product-btn [text]="'Books'" [symbol]="'book'" (clicked)="retrieveProductsFromType($event.productType)"
+      [(selectedProductType)]="selectedProductType" [productType]="productType.books"></app-choose-product-btn>
   </div>
 
   <div class="searchbar-root">
-    <div class="cstm-input-field cstm-searchbar-container">
-      <input type="text" placeholder="Search product..." class="cstm-input-searchbar"
-        [(ngModel)]="productSearchingName">
-      <button type="button" class="cstm-btn btn-searchbar">
-        <span class="material-symbols-outlined"> search </span>
-      </button>
-    </div>
+    <app-cstm-searchbar [placeholder]="'Search product...'" [searchingInput]="productSearchingName">
+    </app-cstm-searchbar>
   </div>
 
+  <span>{{selectedProductType}}</span>
 
 
 
+  <div class="test-modal">
+    <button [appOpenModal]="filmModal" type="button" (click)="setSpecificProductId(getRandomInt)">Open modal</button>
 
+    <app-cstm-modal #filmModal [title]="'Write a feeedback'" [size]="'medium'">
+      <app-product-feedback-content [productId]="specificProductId"></app-product-feedback-content>
+    </app-cstm-modal>
+  </div>
 
 
   <div class="feedback-container">
@@ -37,10 +37,8 @@
         [disabled]="isLoading"></textarea>
     </div>
 
-    <button type="button" class="cstm-btn btn-primary analyze-feedback-btn" (click)="analyzeFeedback()"
-      [disabled]="isLoading">
-      <span class="cstm-btn-text"> Analyze feedback </span>
-    </button>
+    <app-cstm-button [disabled]="isLoading" [text]="'Analyze feedback'" [type]="'primary'" [symbol]="null"
+      (clicked)="analyzeFeedback()" class="analyze-feedback-btn"></app-cstm-button>
 
     <ng-container class="feedback-response-container" *ngIf="!isAnalyzedFeedbackEmpty">
       <h2 class="analyzed-feedback-title">Feedback Response:</h2>

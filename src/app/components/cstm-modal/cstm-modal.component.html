@@ -1,0 +1,11 @@
+<div class="cstm-modal" [ngClass]="{'open': isOpen}" (click)="onBackdropClick()">
+  <div [ngClass]="size" class="cstm-modal-content" (click)="$event.stopPropagation()">
+    <div class="cstm-modal-header">
+      <h4 class="cstm-modal-title">{{title}}</h4>
+      <span class="close" (click)="close()">&times;</span>
+    </div>
+    <div class="cstm-modal-body">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

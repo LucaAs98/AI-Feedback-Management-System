@@ -2,12 +2,13 @@
   height: var(--navbar-height);
   background-color: var(--background-50);
   color: var(--text-950);
+  overflow: hidden;
 }
 
 .main-container {
   padding: 2rem;
-  height: 100svh;
-  overflow-y: scroll;
+  height: calc(100svh - var(--navbar-height));
+  overflow-y: auto;
   background-color: var(--background-50);
   color: var(--text-950);
 }

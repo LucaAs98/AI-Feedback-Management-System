@@ -1,0 +1,8 @@
+<div class="cstm-input-field cstm-searchbar-container">
+  <input type="text" class="cstm-input-searchbar" [placeholder]="placeholder" [(ngModel)]="searchingInput"
+    (ngModelChange)="onInputChange($event)">
+
+  <button type="button" class="cstm-btn btn-searchbar">
+    <span class="material-symbols-outlined"> search </span>
+  </button>
+</div>

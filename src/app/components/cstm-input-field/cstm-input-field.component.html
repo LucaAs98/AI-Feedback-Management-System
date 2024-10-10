@@ -1,0 +1,9 @@
+<div class="cstm-input-field-container">
+  <label *ngIf="label !== null" class="cstm-input-field-label">{{label}}</label>
+  <input *ngIf="!textarea" type="text" class="cstm-input-field" [placeholder]="placeholder" [(ngModel)]="inputElement"
+    (ngModelChange)="onInputChange($event)">
+
+  <textarea *ngIf="textarea" type="text" class="cstm-input-field" [placeholder]="placeholder" [(ngModel)]="inputElement"
+    (ngModelChange)="onInputChange($event)" [rows]="rows" [cols]="cols"
+    [class.notResizable]="!resizable">{{inputElement}}</textarea>
+</div>

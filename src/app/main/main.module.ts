@@ -6,26 +6,35 @@ import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UtilsModule } from '../utils/utils.module';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ComponentsModule } from '../components/components.module';
+import { ChooseProductBtnComponent } from './dashboard/components/choose-product-btn/choose-product-btn.component';
+import { ProductFeedbackContentComponent } from './dashboard/components/product-feedback-content/product-feedback-content.component';
 
 const routes: Routes = [
   {
     path: 'main',
     component: MainComponent,
     children: [
-      { path: 'dashboard', component: DashboardComponent },
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard/:product_category', component: DashboardComponent },
+      { path: '', redirectTo: 'dashboard/0', pathMatch: 'full' },
     ],
   },
 ];
 
 @NgModule({
-  declarations: [MainComponent, DashboardComponent],
+  declarations: [
+    MainComponent,
+    DashboardComponent,
+    NavbarComponent,
+    ChooseProductBtnComponent,
+    ProductFeedbackContentComponent,
+  ],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
     FormsModule,
     UtilsModule,
-    NavbarComponent,
+    ComponentsModule,
   ],
   exports: [RouterModule],
 })

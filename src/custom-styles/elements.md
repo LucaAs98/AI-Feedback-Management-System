@@ -3,38 +3,62 @@
 ## Buttons
 
 - ### Primary button
-```html
-<button type="button" class="cstm-btn btn-primary">
-  <span class="material-symbols-outlined"> star </span>
-  <span class="cstm-btn-text"> Primary Icon </span>
-</button>
-```
+  - #### HTML
+    ```html
+    <button type="button" class="cstm-btn btn-primary">
+      <span class="material-symbols-outlined"> star </span>
+      <span class="cstm-btn-text"> Primary Icon </span>
+    </button>
+    ```
+  - #### Typescript
+    ```ts
+    <app-cstm-button [disabled]="isLoading" [text]="'Primary Button'" [type]="'primary'" [symbol]="star"
+          (clicked)="clicked()"></app-cstm-button>
+    ```
 
 - ### Secondary button
-```html
-<button type="button" class="cstm-btn btn-secondary">
-  <span class="material-symbols-outlined"> star </span>
-  <span class="cstm-btn-text">Secondary Button</span>
-</button>
-```
+  - #### HTML
+    ```html
+    <button type="button" class="cstm-btn btn-secondary">
+      <span class="material-symbols-outlined"> star </span>
+      <span class="cstm-btn-text">Secondary Button</span>
+    </button>
+    ```
+  - #### Typescript
+    ```ts
+    <app-cstm-button [disabled]="isLoading" [text]="'Secondary Button'" [type]="'secondary'" [symbol]="star"
+          (clicked)="clicked()"></app-cstm-button>
+    ```
 
 - ### Accent button
-```html
-<button type="button" class="cstm-btn btn-accent">
-  <span class="material-symbols-outlined"> star </span>
-  <span class="cstm-btn-text">Accent Button</span>
-</button>
-```
+  - #### HTML
+    ```html
+    <button type="button" class="cstm-btn btn-accent">
+      <span class="material-symbols-outlined"> star </span>
+      <span class="cstm-btn-text">Accent Button</span>
+    </button>
+    ```
+  - #### Typescript
+    ```ts
+    <app-cstm-button [disabled]="isLoading" [text]="'Accent Button'" [type]="'accent'" [symbol]="star"
+          (clicked)="clicked()"></app-cstm-button>
+    ```
 
 ## Input fields
 
 - ### Input field
-```html
-<div class="cstm-input-field-container">
-  <label class="cstm-input-field-label">Label Input Field</label>
-  <input type="text" class="cstm-input-field" placeholder="Input Field" [(ngModel)]="inputFieldVar">
-</div>
-```
+  - #### HTML
+    ```html
+    <div class="cstm-input-field-container">
+      <label class="cstm-input-field-label">Label Input Field</label>
+      <input type="text" class="cstm-input-field" placeholder="Input Field" [(ngModel)]="inputFieldVar">
+    </div>
+    ```
+  - #### Typescript
+    ```ts
+      <app-cstm-input-field [label]="'Label'" [placeholder]="'Placeholder'" [(inputElement)]="inputElement">
+      </app-cstm-input-field>
+    ```
 
 - ### Searchbar
 ```html

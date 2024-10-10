@@ -1,11 +1,10 @@
 ::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 10px;
-    background-color: var(--primary-color-lighter);
-
+    background-color: var(--primary-900);
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--primary-color);
+    background-color: var(--primary-500);
     border-radius: 0.3rem;
 }

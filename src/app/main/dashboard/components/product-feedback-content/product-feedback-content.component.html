@@ -1,0 +1,20 @@
+<div class="product-modal-content" *ngIf="!isLoading">
+  <div class="product-section">
+    <div class="product-image-section">
+      <img [src]="productImagePath" alt="Product Image" class="product-image" />
+    </div>
+    <div class="product-description-section">
+      <h3>{{productTitle}}</h3>
+      <p>{{productDescription}}</p>
+    </div>
+  </div>
+  <div class="feedback-section">
+    <app-cstm-textarea [inputElement]="feedback" [rows]="4" [cols]="50" [resizable]="false"
+      [placeholder]="'Write your feedback here...'" [label]="'Your feedback'"></app-cstm-textarea>
+  </div>
+  <app-cstm-button class="send-feedback-btn" [text]="'Send Feedback!'"></app-cstm-button>
+</div>
+
+<div class="product-modal-content loading-modal-content" *ngIf="isLoading">
+  <app-loading-spinner></app-loading-spinner>
+</div>
