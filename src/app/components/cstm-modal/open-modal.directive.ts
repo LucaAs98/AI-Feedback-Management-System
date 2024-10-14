@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { Directive, HostListener, Input } from '@angular/core';
 import { CstmModalComponent } from './cstm-modal.component';
 
 @Directive({
@@ -7,11 +7,7 @@ import { CstmModalComponent } from './cstm-modal.component';
 export class OpenModalDirective {
   @Input() appOpenModal: CstmModalComponent | undefined;
 
-  constructor(private el: ElementRef) {}
-
   @HostListener('click') onClick() {
-    console.log('🐢 ~ onClick');
-
     if (this.appOpenModal) {
       this.appOpenModal.open();
     }

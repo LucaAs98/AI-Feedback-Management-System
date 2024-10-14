@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-cstm-modal',
@@ -11,6 +11,8 @@ export class CstmModalComponent {
   @Input({ required: true }) title: string = 'Modal title';
   @Input() size: 'extra-small' | 'small' | 'medium' | 'large' | 'extra-large' =
     'medium';
+
+  @Output() initDataEvent = new EventEmitter();
 
   open() {
     this.isOpen = true;

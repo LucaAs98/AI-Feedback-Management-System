@@ -1,4 +1,17 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+import {
+  CompleteProduct,
+  ProductService,
+} from '../../../../services/product.service';
+import { UtilsComponent } from '../../../../utils/utils.component';
+import { UtilsService } from '../../../../utils/utils.service';
 
 @Component({
   selector: 'app-product-feedback-content',
@@ -7,24 +20,35 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 })
 export class ProductFeedbackContentComponent {
   feedback: string = '';
-  @Input({ required: true }) productId: number | null = null;
-  productTitle: string = 'Product title';
-  productDescription: string = 'Product Description';
-  productImagePath: string = 'assets/product-images/no-product-image.png';
+  _productId: number | null = null;
+  product: CompleteProduct | null = null;
+  correctImage = this.productService.defaultImagePath; // Path for the default image
+
   isLoading: boolean = false;
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['productId']) {
-      if (this.productId !== null) this.fetchProductData(this.productId);
+  constructor(
+    public productService: ProductService,
+    public utils: UtilsService
+  ) {}
+
+  @Input({ required: true })
+  set productId(value: number | null) {
+    if (value && value !== this._productId) {
+      this._productId = value;
+      this.setProductData(value);
     }
   }
 
-  fetchProductData(productId: number) {
+  async setProductData(value: number) {
     this.isLoading = true;
-    console.log(`🐢 ~ Retrieving product with Id: "${productId}"`);
+    this.product = await this.productService.getProductById(value); //Retrieve product data
+    if (this.product === null) return;
 
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 500);
+    this.correctImage = await this.productService.getFinalImageProductPath(
+      this.product.image,
+      this.product.title
+    );
+
+    this.isLoading = false;
   }
 }

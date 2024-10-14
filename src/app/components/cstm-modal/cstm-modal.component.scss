@@ -41,6 +41,8 @@
 }
 
 .cstm-modal-content {
+  max-height: 90svh;
+
   background-color: var(--background-50);
   padding: 1rem;
   border-radius: 0.8rem;
@@ -74,9 +76,10 @@
 
 
 .cstm-modal-body {
+  max-height: 80svh;
+  overflow: auto;
   padding: 2rem;
 }
-
 
 
 .shake {

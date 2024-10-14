@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, output, Output } from '@angular/core';
 import { ProductType } from '../../../../services/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-choose-product-btn',
@@ -9,11 +10,12 @@ import { ProductType } from '../../../../services/product.service';
 export class ChooseProductBtnComponent {
   @Input({ required: true }) symbol: string | null = 'star';
   @Input({ required: true }) text: string = 'Category';
-  @Input({ required: true }) productType = ProductType.movies;
-  @Input({ required: true }) selectedProductType = ProductType.movies;
+  @Input({ required: true }) productType = ProductType.FILM;
+  @Input({ required: true }) selectedProductType = ProductType.FILM;
 
   @Output() selectedProductTypeChange = new EventEmitter<any>();
-  @Output() clicked = new EventEmitter<{ productType: ProductType }>();
+
+  constructor(private router: Router) {}
 
   get isProductSelected() {
     return this.productType === this.selectedProductType;
@@ -25,6 +27,6 @@ export class ChooseProductBtnComponent {
 
   onClick() {
     this.selectProduct();
-    this.clicked.emit({ productType: this.productType });
+    this.router.navigate([`/main/dashboard/${this.productType}`]);
   }
 }

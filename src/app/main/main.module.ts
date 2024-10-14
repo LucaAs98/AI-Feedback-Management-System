@@ -9,6 +9,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ComponentsModule } from '../components/components.module';
 import { ChooseProductBtnComponent } from './dashboard/components/choose-product-btn/choose-product-btn.component';
 import { ProductFeedbackContentComponent } from './dashboard/components/product-feedback-content/product-feedback-content.component';
+import { ProductCardComponent } from './dashboard/components/product-card/product-card.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,7 @@ const routes: Routes = [
     NavbarComponent,
     ChooseProductBtnComponent,
     ProductFeedbackContentComponent,
+    ProductCardComponent,
   ],
   imports: [
     RouterModule.forChild(routes),

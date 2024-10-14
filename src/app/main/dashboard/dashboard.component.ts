@@ -1,10 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import {
   AnalyzedFeedback,
   FeedbackService,
 } from '../../services/feedback.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductService, ProductType } from '../../services/product.service';
+import {
+  Book,
+  CompleteProduct,
+  Film,
+  Music,
+  Product,
+  ProductService,
+  ProductType,
+} from '../../services/product.service';
+import { CstmModalComponent } from '../../components/cstm-modal/cstm-modal.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,13 +21,16 @@ import { ProductService, ProductType } from '../../services/product.service';
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent {
+  @ViewChild('productModal') productModal: CstmModalComponent | undefined;
+
+  isLoading: boolean = false;
   productSearchingName: string = '';
-  selectedProductType: ProductType = ProductType.movies;
+  selectedProductType: ProductType = ProductType.FILM;
   productType = ProductType;
+  products: CompleteProduct[] | [] = [];
 
   //OLD CODE FOR FEEDBACK
   feedback: string = '';
-  isLoading: boolean = false;
   error = '';
   analyzedFeedback: AnalyzedFeedback | null = null;
   specificProductId: number | null = null;
@@ -26,24 +38,33 @@ export class DashboardComponent {
   constructor(
     private feedbackService: FeedbackService,
     private productService: ProductService,
-    private route: ActivatedRoute,
-    private router: Router
+    private route: ActivatedRoute
   ) {}
 
   async ngOnInit() {
     this.route.params.subscribe(async (params) => {
-      await this.retrieveProductsFromType(params['product_category']);
+      this.isLoading = true;
+      this.products = await this.retrieveProductsFromType(
+        params['product_category']
+      );
+      console.log('🐢 ~  this.products:', this.products);
+      this.isLoading = false;
     });
   }
 
-  async retrieveProductsFromType(productType: ProductType) {
+  async retrieveProductsFromType(
+    productType: ProductType
+  ): Promise<CompleteProduct[]> {
+    this.isLoading = true;
+
     this.selectedProductType = productType;
     if (!Object.values(ProductType).includes(this.selectedProductType)) {
-      this.selectedProductType = ProductType.movies;
+      this.selectedProductType = ProductType.FILM;
     }
 
-    this.router.navigate([`/main/dashboard/${this.selectedProductType}`]);
-    await this.productService.getProductsOfType(this.selectedProductType);
+    return await this.productService.getProductsOfType(
+      this.selectedProductType
+    );
   }
 
   isProductSelected(productType: ProductType) {
@@ -54,9 +75,11 @@ export class DashboardComponent {
     this.specificProductId = productId;
   }
 
-  get getRandomInt(): number {
-    return Math.floor(Math.random() * (5 - 1 + 1)) + 1;
+  openFeedbackModal(productId: number | null) {
+    this.specificProductId = productId;
+    this.productModal?.open();
   }
+
   //------------- OLD CODE FOR FEEDBACKS
   get isAnalyzedFeedbackEmpty() {
     return this.analyzedFeedback === null;

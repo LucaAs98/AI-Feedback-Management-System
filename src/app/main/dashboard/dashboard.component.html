@@ -1,15 +1,13 @@
 <div class="dashboard-root">
   <div class="choose-product-container">
-    <app-choose-product-btn [text]="'Movies'" [symbol]="'movie'"
-      (clicked)="retrieveProductsFromType($event.productType)" [(selectedProductType)]="selectedProductType"
-      [productType]="productType.movies"></app-choose-product-btn>
+    <app-choose-product-btn [text]="'Films'" [symbol]="'movie'" [(selectedProductType)]="selectedProductType"
+      [productType]="productType.FILM"></app-choose-product-btn>
 
-    <app-choose-product-btn [text]="'Music'" [symbol]="'music_note'"
-      (clicked)="retrieveProductsFromType($event.productType)" [(selectedProductType)]="selectedProductType"
-      [productType]="productType.music"></app-choose-product-btn>
+    <app-choose-product-btn [text]="'Music'" [symbol]="'music_note'" [(selectedProductType)]="selectedProductType"
+      [productType]="productType.MUSIC"></app-choose-product-btn>
 
-    <app-choose-product-btn [text]="'Books'" [symbol]="'book'" (clicked)="retrieveProductsFromType($event.productType)"
-      [(selectedProductType)]="selectedProductType" [productType]="productType.books"></app-choose-product-btn>
+    <app-choose-product-btn [text]="'Books'" [symbol]="'book'" [(selectedProductType)]="selectedProductType"
+      [productType]="productType.BOOK"></app-choose-product-btn>
   </div>
 
   <div class="searchbar-root">
@@ -17,20 +15,20 @@
     </app-cstm-searchbar>
   </div>
 
-  <span>{{selectedProductType}}</span>
-
-
-
-  <div class="test-modal">
-    <button [appOpenModal]="filmModal" type="button" (click)="setSpecificProductId(getRandomInt)">Open modal</button>
-
-    <app-cstm-modal #filmModal [title]="'Write a feeedback'" [size]="'medium'">
-      <app-product-feedback-content [productId]="specificProductId"></app-product-feedback-content>
-    </app-cstm-modal>
+  <div class="loading-container" *ngIf="isLoading">
+    <app-loading-spinner></app-loading-spinner>
   </div>
 
+  <div class="products-container" *ngIf="!isLoading">
+    <app-product-card *ngFor="let prod of products" [product]="prod"
+      (feedbackClicked)="openFeedbackModal($event)"></app-product-card>
+  </div>
 
-  <div class="feedback-container">
+  <app-cstm-modal #productModal [title]="'Write a feeedback'" [size]="'large'">
+    <app-product-feedback-content [productId]="specificProductId"></app-product-feedback-content>
+  </app-cstm-modal>
+
+  <!--  <div class="feedback-container">
     <div class="cstm-input-field-container">
       <label class="cstm-input-field-label">Feedback</label>
       <textarea class="cstm-input-field" placeholder="Insert feedback here..." [(ngModel)]="feedback"
@@ -51,8 +49,6 @@
 
     <span class="error-message text-danger">{{error}}</span>
   </div>
+ -->
 
-  <div class="loading-container" *ngIf="isLoading">
-    <app-loading-spinner></app-loading-spinner>
-  </div>
 </div>

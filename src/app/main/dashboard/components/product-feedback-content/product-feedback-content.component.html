@@ -1,11 +1,61 @@
-<div class="product-modal-content" *ngIf="!isLoading">
+<div class="product-modal-content" *ngIf="!isLoading && product !== null">
   <div class="product-section">
     <div class="product-image-section">
-      <img [src]="productImagePath" alt="Product Image" class="product-image" />
+      <img [src]="correctImage" alt="Product Image" class="product-image" />
     </div>
     <div class="product-description-section">
-      <h3>{{productTitle}}</h3>
-      <p>{{productDescription}}</p>
+      <h2 class="product-title">{{product.title}}</h2>
+
+      <div class="additional-product-info">
+        <div *ngIf="productService.isFilm(product)">
+          <div class="addition-info-row">
+            <h6 class="title">Director:</h6>
+            <span>{{ product.director }}</span>
+          </div>
+          <div class="addition-info-row">
+            <h6 class="title">Duration:</h6>
+            <span>{{ product.duration | timeFormat }}</span>
+          </div>
+          <div class="addition-info-row addition-info-row-description">
+            <h6 class="title">Description:</h6>
+            <p class="scrollable-description"> {{ product.description }}</p>
+          </div>
+        </div>
+
+        <div *ngIf="productService.isBook(product)">
+          <div class="addition-info-row">
+            <h6 class="title">Author:</h6>
+            <span>{{ product.author }}</span>
+          </div>
+          <div class="addition-info-row">
+            <h6 class="title">Publisher:</h6>
+            <span>{{ product.publisher }}</span>
+          </div>
+          <div class="addition-info-row">
+            <h6 class="title">ISBN:</h6>
+            <span>{{ product.isbn }}</span>
+          </div>
+          <div class="addition-info-row addition-info-row-description">
+            <h6 class="title">Description:</h6>
+            <p class="scrollable-description"> {{ product.description }}</p>
+          </div>
+        </div>
+
+        <div *ngIf="productService.isMusic(product)">
+          <div class="addition-info-row">
+            <h6 class="title">Artist:</h6>
+            <span>{{ product.artist }}</span>
+          </div>
+          <div class="addition-info-row">
+            <h6 class="title">Producer:</h6>
+            <span>{{ product.producer }}</span>
+          </div>
+          <div class="addition-info-row">
+            <h6 class="title">Duration:</h6>
+            <span>{{ product.duration | timeFormat }}</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="feedback-section">
