@@ -10,8 +10,8 @@ import {
   CompleteProduct,
   ProductService,
 } from '../../../../services/product.service';
-import { UtilsComponent } from '../../../../utils/utils.component';
 import { UtilsService } from '../../../../utils/utils.service';
+import { FeedbackService } from '../../../../services/feedback.service';
 
 @Component({
   selector: 'app-product-feedback-content',
@@ -24,10 +24,12 @@ export class ProductFeedbackContentComponent {
   product: CompleteProduct | null = null;
   correctImage = this.productService.defaultImagePath; // Path for the default image
 
+  analyzingError: string = '';
   isLoading: boolean = false;
 
   constructor(
     public productService: ProductService,
+    private feedbackService: FeedbackService,
     public utils: UtilsService
   ) {}
 
@@ -48,6 +50,31 @@ export class ProductFeedbackContentComponent {
       this.product.image,
       this.product.title
     );
+
+    this.isLoading = false;
+  }
+
+  async sendFeedback() {
+    if (this.product === null) {
+      this.analyzingError = 'The product Id is null!';
+      return;
+    }
+
+    this.isLoading = true;
+    this.analyzingError = '';
+    console.log(' 🐢 ~ this.feedback:', this.feedback);
+
+    // Call the feedbackService's analyzeFeedback method to analyze the current feedback text
+    const response = await this.feedbackService.analyzeFeedback(
+      this.feedback,
+      this.product?.id
+    );
+
+    // If the analysis is successful, update the analyzedFeedback with the result else update the message error
+    if (response.success) {
+      const analyzedFeedback = response.data;
+      console.log('Feedback analyzed successfully:', analyzedFeedback);
+    } else this.analyzingError = response.error;
 
     this.isLoading = false;
   }

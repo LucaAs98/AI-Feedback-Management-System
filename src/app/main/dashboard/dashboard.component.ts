@@ -90,7 +90,7 @@ export class DashboardComponent {
    *
    * @returns {Promise<void>} This function does not return a value, but it updates component state.
    */
-  async analyzeFeedback(): Promise<void> {
+  /*   async analyzeFeedback(): Promise<void> {
     this.isLoading = true;
     this.error = '';
     this.analyzedFeedback = null;
@@ -105,5 +105,5 @@ export class DashboardComponent {
     } else this.error = response.error;
 
     this.isLoading = false;
-  }
+  } */
 }

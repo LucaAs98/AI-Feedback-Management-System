@@ -59,10 +59,10 @@
     </div>
   </div>
   <div class="feedback-section">
-    <app-cstm-textarea [inputElement]="feedback" [rows]="4" [cols]="50" [resizable]="false"
-      [placeholder]="'Write your feedback here...'" [label]="'Your feedback'"></app-cstm-textarea>
+    <app-cstm-input-field [(inputElement)]="feedback" [rows]="4" [cols]="50" [resizable]="false" [textarea]="true"
+      [placeholder]="'Write your feedback here...'" [label]="'Your feedback'"></app-cstm-input-field>
   </div>
-  <app-cstm-button class="send-feedback-btn" [text]="'Send Feedback!'"></app-cstm-button>
+  <app-cstm-button class="send-feedback-btn" [text]="'Send Feedback!'" (clicked)="sendFeedback()"></app-cstm-button>
 </div>
 
 <div class="product-modal-content loading-modal-content" *ngIf="isLoading">

@@ -25,11 +25,15 @@ export class FeedbackService {
    * @returns {Promise<Result<AnalyzedFeedback>>} A promise that resolves to a `Result` object.
    * The result contains either the analyzed feedback data (on success) or an error message (on failure).
    */
-  async analyzeFeedback(feedback: string): Promise<Result<AnalyzedFeedback>> {
+  async analyzeFeedback(
+    feedback: string,
+    product_id: number
+  ): Promise<Result<AnalyzedFeedback>> {
     try {
       // Sends the feedback text to the external analysis service
       const response = await axios.post(this.analyzeFeedbackURL, {
         feedback_text: feedback,
+        product_id: product_id,
         user_id: 1, // TODO: Implement dynamic user_id
       });
 
@@ -52,7 +56,7 @@ export class FeedbackService {
         errorMessage = error.message;
       }
 
-      console.error('Error while analyzing feedback:', error); // Log the full error for debugging
+      console.error('Error while analyzing feedback:', errorMessage); // Log the full error for debugging
 
       return { success: false, error: errorMessage };
     }
