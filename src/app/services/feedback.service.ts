@@ -28,7 +28,7 @@ export class FeedbackService {
   async analyzeFeedback(
     feedback: string,
     product_id: number
-  ): Promise<Result<AnalyzedFeedback>> {
+  ): Promise<Result<number>> {
     try {
       // Sends the feedback text to the external analysis service
       const response = await axios.post(this.analyzeFeedbackURL, {
@@ -37,16 +37,7 @@ export class FeedbackService {
         user_id: 1, // TODO: Implement dynamic user_id
       });
 
-      // Constructs the AnalyzedFeedback object from the response
-      const analyzedFeedback: AnalyzedFeedback = {
-        sentiment: response.data.sentiment,
-        positive_score: response.data.positive_score,
-        negative_score: response.data.negative_score,
-        neutral_score: response.data.neutral_score,
-        mixed_score: response.data.mixed_score,
-      };
-
-      return { success: true, data: analyzedFeedback };
+      return { success: true, data: response.data.feedback_score };
     } catch (error: unknown) {
       let errorMessage = 'An unknown error occurred'; // Default error message
       if (axios.isAxiosError(error)) {

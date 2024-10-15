@@ -7,6 +7,7 @@ import { CstmInputFieldComponent } from './cstm-input-field/cstm-input-field.com
 import { CstmSearchbarComponent } from './cstm-searchbar/cstm-searchbar.component';
 import { CstmModalComponent } from './cstm-modal/cstm-modal.component';
 import { OpenModalDirective } from './cstm-modal/open-modal.directive';
+import { CstmToastComponent } from './cstm-toast/cstm-toast.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { OpenModalDirective } from './cstm-modal/open-modal.directive';
     CstmSearchbarComponent,
     CstmModalComponent,
     OpenModalDirective,
+    CstmToastComponent,
   ],
   imports: [CommonModule, FormsModule, UtilsModule],
   exports: [
@@ -22,6 +24,7 @@ import { OpenModalDirective } from './cstm-modal/open-modal.directive';
     CstmInputFieldComponent,
     CstmSearchbarComponent,
     CstmModalComponent,
+    CstmToastComponent,
     OpenModalDirective,
   ],
 })

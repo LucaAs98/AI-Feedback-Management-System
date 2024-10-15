@@ -20,35 +20,6 @@
   </div>
 
   <div class="products-container" *ngIf="!isLoading">
-    <app-product-card *ngFor="let prod of products" [product]="prod"
-      (feedbackClicked)="openFeedbackModal($event)"></app-product-card>
+    <app-product-card *ngFor="let prod of products" [product]="prod"></app-product-card>
   </div>
-
-  <app-cstm-modal #productModal [title]="'Write a feeedback'" [size]="'large'">
-    <app-product-feedback-content [productId]="specificProductId"></app-product-feedback-content>
-  </app-cstm-modal>
-
-  <!--  <div class="feedback-container">
-    <div class="cstm-input-field-container">
-      <label class="cstm-input-field-label">Feedback</label>
-      <textarea class="cstm-input-field" placeholder="Insert feedback here..." [(ngModel)]="feedback"
-        [disabled]="isLoading"></textarea>
-    </div>
-
-    <app-cstm-button [disabled]="isLoading" [text]="'Analyze feedback'" [type]="'primary'" [symbol]="null"
-      (clicked)="analyzeFeedback()" class="analyze-feedback-btn"></app-cstm-button>
-
-    <ng-container class="feedback-response-container" *ngIf="!isAnalyzedFeedbackEmpty">
-      <h2 class="analyzed-feedback-title">Feedback Response:</h2>
-      <span class="analyzed-feedback-text">Sentiment: {{analyzedFeedback?.sentiment}}</span>
-      <span class="analyzed-feedback-text">Positive Score: {{analyzedFeedback?.positive_score}}</span>
-      <span class="analyzed-feedback-text">Negative Score: {{analyzedFeedback?.negative_score}}</span>
-      <span class="analyzed-feedback-text">Neutral Score: {{analyzedFeedback?.neutral_score}}</span>
-      <span class="analyzed-feedback-text">Mixed Score: {{analyzedFeedback?.mixed_score}}</span>
-    </ng-container>
-
-    <span class="error-message text-danger">{{error}}</span>
-  </div>
- -->
-
 </div>

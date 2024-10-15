@@ -1,0 +1,11 @@
+<div *ngIf="isVisible" [ngClass]="['cstm-toast', type]">
+  <div class="cstm-toast-header">
+    <span class="material-symbols-outlined">{{icon}}</span>
+    <span class="cstm-toast-title">{{ message }}</span>
+  </div>
+
+  <div class="cstm-toast-content">
+    <span class="cstm-toast-description">{{ description }}</span>
+    <span>{{id}}</span>
+  </div>
+</div>

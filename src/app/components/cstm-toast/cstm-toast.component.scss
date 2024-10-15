@@ -1,0 +1,49 @@
+.cstm-toast {
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.cstm-toast-header {
+  display: flex;
+  align-items: center;
+
+  gap: 0.5rem;
+}
+
+.cstm-toast-title {
+  font-weight: var(--semibold);
+}
+
+.cstm-toast-content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.cstm-toast-description {
+  font-size: 0.9rem;
+}
+
+.success {
+  background-color: #28a745;
+  color: white;
+}
+
+.danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.warning {
+  background-color: #ffc107;
+  color: black;
+}
+
+.primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.toast i {
+  margin-right: 8px;
+}

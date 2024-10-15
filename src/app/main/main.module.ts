@@ -8,8 +8,9 @@ import { UtilsModule } from '../utils/utils.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ComponentsModule } from '../components/components.module';
 import { ChooseProductBtnComponent } from './dashboard/components/choose-product-btn/choose-product-btn.component';
-import { ProductFeedbackContentComponent } from './dashboard/components/product-feedback-content/product-feedback-content.component';
 import { ProductCardComponent } from './dashboard/components/product-card/product-card.component';
+import { ProductType } from '../types/product.types';
+import { ProductPageComponent } from './dashboard/product-page/product-page.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,15 @@ const routes: Routes = [
     component: MainComponent,
     children: [
       { path: 'dashboard/:product_category', component: DashboardComponent },
-      { path: '', redirectTo: 'dashboard/0', pathMatch: 'full' },
+      {
+        path: 'dashboard/:product_category/:product_id',
+        component: ProductPageComponent,
+      },
+      {
+        path: '',
+        redirectTo: 'dashboard/' + ProductType.FILM,
+        pathMatch: 'full',
+      },
     ],
   },
 ];
@@ -28,8 +37,8 @@ const routes: Routes = [
     DashboardComponent,
     NavbarComponent,
     ChooseProductBtnComponent,
-    ProductFeedbackContentComponent,
     ProductCardComponent,
+    ProductPageComponent,
   ],
   imports: [
     RouterModule.forChild(routes),

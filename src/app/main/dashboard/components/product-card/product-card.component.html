@@ -1,4 +1,4 @@
-<div class="product-card" *ngIf="product !== null" type="button" (click)="onFeedbackClick(product.id)">
+<div class="product-card" *ngIf="product !== null" type="button" (click)="navigateToProduct(product.id)">
   <div class="product-image-container">
     <img class="product-image" [src]="correctImage">
   </div>

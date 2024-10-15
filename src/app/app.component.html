@@ -1,1 +1,6 @@
 <router-outlet></router-outlet>
+
+<div class="toast-container">
+  <app-cstm-toast *ngFor="let toast of cstmToastService.toasts$ | async" [type]="toast.type" [message]="toast.message"
+    [description]="toast.description" [icon]="toast.icon" [id]="toast.id" [duration]="toast.duration"></app-cstm-toast>
+</div>
