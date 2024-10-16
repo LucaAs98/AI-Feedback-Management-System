@@ -11,7 +11,7 @@
   </div>
 
   <div class="searchbar-root">
-    <app-cstm-searchbar [placeholder]="'Search product...'" [searchingInput]="productSearchingName">
+    <app-cstm-searchbar [placeholder]="'Search product...'" [(searchingInput)]="productSearchingName">
     </app-cstm-searchbar>
   </div>
 
@@ -20,6 +20,7 @@
   </div>
 
   <div class="products-container" *ngIf="!isLoading">
-    <app-product-card *ngFor="let prod of products" [product]="prod"></app-product-card>
+    <app-product-card *ngFor="let prod of products | filterArray: productSearchingName : 'title'"
+      [product]="prod"></app-product-card>
   </div>
 </div>

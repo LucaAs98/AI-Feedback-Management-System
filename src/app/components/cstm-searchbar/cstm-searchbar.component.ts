@@ -6,12 +6,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './cstm-searchbar.component.scss',
 })
 export class CstmSearchbarComponent {
-  @Input() searchingInput: string = '';
+  @Input({ required: true }) searchingInput: string = '';
   @Input() placeholder: string = 'Search...';
 
-  @Output() inputElementChange = new EventEmitter<string>();
+  @Output() searchingInputChange = new EventEmitter<string>();
 
-  onInputChange($event: any) {
-    throw new Error('Method not implemented.');
+  onInputChange(value: string) {
+    this.searchingInputChange.emit(value);
   }
 }

@@ -4,6 +4,7 @@ import { UtilsComponent } from './utils.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { TimeFormatPipe } from './time-format.pipe';
+import { FilterArrayPipe } from './filter-array.pipe';
 
 @NgModule({
   declarations: [
@@ -11,8 +12,9 @@ import { TimeFormatPipe } from './time-format.pipe';
     PageNotFoundComponent,
     LoadingSpinnerComponent,
     TimeFormatPipe,
+    FilterArrayPipe,
   ],
   imports: [CommonModule],
-  exports: [LoadingSpinnerComponent, TimeFormatPipe],
+  exports: [LoadingSpinnerComponent, TimeFormatPipe, FilterArrayPipe],
 })
 export class UtilsModule {}
