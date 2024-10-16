@@ -10,17 +10,15 @@ export class CstmToastComponent implements OnInit {
   @Input() type: 'success' | 'danger' | 'warning' | 'primary' = 'primary';
   @Input({ required: true }) message: string = '';
   @Input({ required: true }) description: string = '';
-  @Input() icon: string | undefined = '';
-  @Input() duration: number | undefined = 3000; // Milliseconds
-  @Input() id?: number | undefined = 0; // Milliseconds
-
-  isVisible: boolean = true;
+  @Input() icon: string = '';
+  @Input() duration: number = 3000; // Milliseconds
+  @Input() id: number = 0; // Milliseconds
 
   constructor(private toastService: CstmToastService) {}
 
   ngOnInit(): void {
     setTimeout(() => {
-      // if (this.id !== undefined) this.toastService.removeToast(this.id);
+      this.toastService.removeToast(this.id); //Removes the toast after its duration
     }, this.duration);
   }
 }

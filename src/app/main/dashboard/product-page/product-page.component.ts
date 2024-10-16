@@ -97,10 +97,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
    */
   async sendFeedback() {
     // If the product is not set, display an error message and exit the function.
-    if (this.product === null) {
-      this.analyzingError = 'The product Id is null!';
-      return;
-    }
+    if (!this.canSendFeedback()) return;
 
     // Start the loading state and clear any existing errors.
     this.isLoadingFeedback = true;
@@ -108,9 +105,9 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     let feedbackScore = 0;
 
     // Analyze the provided feedback for the current product.
-    /*  const response = await this.feedbackService.analyzeFeedback(
+    const response = await this.feedbackService.analyzeFeedback(
       this.feedback,
-      this.product?.id
+      this.product!.id
     );
 
     // If the feedback analysis is successful, handle the analyzed feedback data.
@@ -119,30 +116,40 @@ export class ProductPageComponent implements OnInit, OnDestroy {
       console.log('Feedback analyzed successfully: score: ', feedbackScore);
     } else this.analyzingError = response.error; // If the analysis fails, update the error message with the response error.
 
-    // Reset the loading state, clear error messages and the feedback input.
+    // Add toast notification, reset the loading state and clear the feedback input.
     this.cstmToastService.addToast({
+      icon: 'rate_review',
       type: response.success ? 'success' : 'danger',
       message: response.success
-        ? 'Feedback created successfully!'
-        : 'Feedback error!',
+        ? 'Feedback submitted successfully!'
+        : 'Feedback submission failed',
       description: response.success
-        ? `Feedback analyzed successfully: score: ${feedbackScore}`
-        : response.error,
+        ? `Your feedback has been analyzed successfully. Score: ${feedbackScore}`
+        : `${this.analyzingError}`,
+    });
 
-      duration: 10000,
-    }); */
     this.isLoadingFeedback = false;
     this.feedback = '';
+  }
 
-    this.cstmToastService.addToast({
-      type: true ? 'success' : 'danger',
-      message: true ? 'Feedback created successfully!' : 'Feedback error!',
-      description: true
-        ? `Feedback analyzed successfully: score: ${feedbackScore}`
-        : 'Errore',
+  /**
+   * Checks if feedback can be sent by validating the product ID and feedback input.
+   * Updates the `analyzingError` message if any required conditions are not met.
+   *
+   * @returns {boolean} - Returns true if there are no errors and false if any validation errors are present.
+   */
+  canSendFeedback(): boolean {
+    this.analyzingError = ''; // Reset any previous error messages.
 
-      duration: 10000,
-    });
+    // Check if the product is null
+    if (this.product === null) this.analyzingError += 'The product Id is null!';
+
+    // Check if the feedback text is empty after trimming spaces
+    if (this.feedback.trim().length === 0)
+      this.analyzingError += 'Feedback field is required!';
+
+    // Return true if there are no errors (i.e., if `analyzingError` is empty).
+    return this.analyzingError.length === 0;
   }
 
   /** Navigates to the previous URL by removing the last parameter from the current route (productId). */

@@ -1,6 +1,19 @@
 .cstm-toast {
   padding: 1rem;
   border-radius: 1rem;
+
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.cstm-toast.show {
+  animation-name: slideInRight;
+}
+
+.cstm-toast.hide {
+  animation-name: slideOutRight;
 }
 
 .cstm-toast-header {
@@ -12,38 +25,70 @@
 
 .cstm-toast-title {
   font-weight: var(--semibold);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .cstm-toast-content {
   display: flex;
   justify-content: center;
   flex-direction: column;
+
+  margin-top: 0.5rem;
 }
 
 .cstm-toast-description {
   font-size: 0.9rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .success {
-  background-color: #28a745;
-  color: white;
+  background-color: var(--bs-success);
+  color: var(--text-950);
 }
 
 .danger {
-  background-color: #dc3545;
-  color: white;
+  background-color: var(--bs-danger);
+  color: var(--text-950);
 }
 
 .warning {
-  background-color: #ffc107;
-  color: black;
+  background-color: var(--bs-warning);
+  color: var(--text-50);
 }
 
 .primary {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--primary-500);
+  color: var(--text-950);
 }
 
-.toast i {
-  margin-right: 8px;
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }
