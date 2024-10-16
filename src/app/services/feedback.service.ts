@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { Result } from './services';
+import { environment } from '../../environments/environment';
 
 export type AnalyzedFeedback = {
   sentiment: string;
@@ -14,7 +15,7 @@ export type AnalyzedFeedback = {
   providedIn: 'root',
 })
 export class FeedbackService {
-  analyzeFeedbackURL = 'http://localhost:8080/feedback';
+  analyzeFeedbackURL = environment.apiUrl + '/feedback';
 
   constructor() {}
 
