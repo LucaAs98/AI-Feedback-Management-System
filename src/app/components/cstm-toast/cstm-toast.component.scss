@@ -92,3 +92,26 @@
     opacity: 0;
   }
 }
+
+
+@media (max-width: 800px) {
+  .cstm-toast {
+    padding: 0.6rem;
+  }
+
+  .cstm-toast-header {
+    gap: 0.3rem;
+  }
+
+  .cstm-toast-title {
+    -webkit-line-clamp: 1;
+  }
+
+  .cstm-toast-content {
+    margin-top: 0.3rem;
+  }
+
+  .cstm-toast-description {
+    -webkit-line-clamp: 2;
+  }
+}

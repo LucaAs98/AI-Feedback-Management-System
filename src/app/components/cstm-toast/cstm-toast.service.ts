@@ -50,6 +50,6 @@ export class CstmToastService {
     setTimeout(() => {
       this.toasts = this.toasts.filter((t) => t.id !== toastId); // Removes the toast from the array.
       this.toastSubject.next(this.toasts); // Emits the updated list of toasts.
-    }, 2000); // Delay before removing from the array because we want to see the hide animation.
+    }, 500); // Delay before removing from the array because we want to see the hide animation.
   }
 }

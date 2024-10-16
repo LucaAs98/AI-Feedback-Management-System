@@ -7,7 +7,7 @@
 @import url(custom-styles/dropdowns.scss);
 
 :root {
-  --navbar-height: 80px;
+  --navbar-height: 70px;
 }
 
 * {
@@ -28,12 +28,23 @@
   visibility: hidden;
 }
 
-h1 {
+h1,
+h2,
+h3 {
   font-weight: var(--bold);
 }
 
 
 app-loading-spinner {
-  min-width: 100px;
-  min-height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+@media (max-width: 800px) {
+  :root {
+    --navbar-height: 50px;
+  }
 }
