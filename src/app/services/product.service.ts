@@ -7,13 +7,14 @@ import {
   Music,
   ProductType,
 } from '../types/product.types';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  retrieveProductByIdURL = 'http://localhost:8080/product/id/';
-  getProductByTypeURL = 'http://localhost:8080/product/type/';
+  retrieveProductByIdURL = environment.apiUrl + '/product/id/';
+  getProductByTypeURL = environment.apiUrl + '/product/type/';
 
   defaultImagePath: string = 'assets/product-images/no-product-image.png';
 
