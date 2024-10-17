@@ -11,23 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ProductCardComponent {
   @Input({ required: true }) product: CompleteProduct | null = null;
 
-  constructor(
-    private productService: ProductService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {}
-
-  correctImage = this.productService.defaultImagePath; // Path for the default image
-
-  /** Checks if the product's image is defined and then fetches the final image path for the specific product. */
-  async ngOnInit() {
-    if (this.product?.image === undefined) return;
-
-    this.correctImage = await this.productService.getFinalImageProductPath(
-      this.product.image,
-      this.product.title
-    );
-  }
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   navigateToProduct(productId: number) {
     const productType = this.route.snapshot.params['product_category'];
