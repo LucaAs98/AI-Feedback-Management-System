@@ -1,0 +1,10 @@
+<div class="dropdown">
+  <button type="button" class="cstm-btn btn-primary" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="cstm-btn-text">{{selectedElement}}</span>
+    <span class="material-symbols-outlined dropdown-icon"></span>
+  </button>
+
+  <div class="dropdown-menu cstm-dropdown-menu">
+    <button *ngFor="let el of elements" class="dropdown-item cstm-dropdown-item" (click)="onClick(el)">{{el}}</button>
+  </div>
+</div>

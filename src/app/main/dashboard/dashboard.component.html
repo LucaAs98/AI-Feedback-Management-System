@@ -15,12 +15,24 @@
     </app-cstm-searchbar>
   </div>
 
+  <div class="genres-filter-container">
+    <label>Select a genre:</label>
+    <app-cstm-dropdown [(selectedElement)]="selectedGenre" [elements]="genres"
+      (clicked)="changeRootOnGenreSelect()"></app-cstm-dropdown>
+  </div>
+
   <div class="loading-container" *ngIf="isLoading">
     <app-loading-spinner></app-loading-spinner>
   </div>
 
   <div class="products-container" *ngIf="!isLoading">
-    <app-product-card *ngFor="let prod of products | filterArray: productSearchingName : 'title'"
+    <app-product-card
+      *ngFor="let prod of products | filterArray: productSearchingName : 'title' | filterArray: getSelectedGenre : 'genre_category'"
       [product]="prod"></app-product-card>
+
+    <span
+      *ngIf="(products | filterArray: productSearchingName : 'title' | filterArray: getSelectedGenre : 'genre_category').length === 0">
+      No products with this name
+    </span>
   </div>
 </div>

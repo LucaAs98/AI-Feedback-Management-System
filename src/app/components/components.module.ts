@@ -8,6 +8,7 @@ import { CstmSearchbarComponent } from './cstm-searchbar/cstm-searchbar.componen
 import { CstmModalComponent } from './cstm-modal/cstm-modal.component';
 import { OpenModalDirective } from './cstm-modal/open-modal.directive';
 import { CstmToastComponent } from './cstm-toast/cstm-toast.component';
+import { CstmDropdownComponent } from './cstm-dropdown/cstm-dropdown.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { CstmToastComponent } from './cstm-toast/cstm-toast.component';
     CstmModalComponent,
     OpenModalDirective,
     CstmToastComponent,
+    CstmDropdownComponent,
   ],
   imports: [CommonModule, FormsModule, UtilsModule],
   exports: [
@@ -26,6 +28,7 @@ import { CstmToastComponent } from './cstm-toast/cstm-toast.component';
     CstmModalComponent,
     CstmToastComponent,
     OpenModalDirective,
+    CstmDropdownComponent,
   ],
 })
 export class ComponentsModule {}

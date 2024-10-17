@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { ProductService } from '../../../../services/product.service';
 import { CompleteProduct, ProductType } from '../../../../types/product.types';
 import { ActivatedRoute, Router } from '@angular/router';
 
