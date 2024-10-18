@@ -47,19 +47,21 @@ export class ProductPageComponent implements OnInit, OnDestroy {
       // Clear previous errors and feedback.
       this.analyzingError = '';
       this.feedback = '';
-      this.isLoading = true;
 
       //Get parameters from the route
       const productType = params['product_category'];
       const newProductId = params['product_id'];
+
+      if (!Object.values(ProductType).includes(productType.toUpperCase())) {
+        this.router.navigate([`/main/dashboard/${ProductType.FILM}`]); // Default to ProductType.FILM if the provided product type is invalid
+        return;
+      }
 
       // If the newProductId is defined and different from the current one, update the product ID.
       if (newProductId && newProductId !== this._productId) {
         this._productId = newProductId;
         await this.setProductData(newProductId, productType); // Fetch and set the product data based on the new product ID.
       }
-
-      this.isLoading = false;
     });
   }
 
@@ -79,14 +81,16 @@ export class ProductPageComponent implements OnInit, OnDestroy {
 
     this.product = await this.productService.getProductById(productId); // Retrieve product data using the product ID.
 
-    if (this.product?.type !== productType) return;
-    if (this.product === null) return; // If no product is found, exit the function.
-
-    // Get the correct image path for the product.
-    this.correctImage = await this.productService.getFinalImageProductPath(
-      this.product.image,
-      this.product.title
-    );
+    if (
+      this.product?.type.toUpperCase() === productType.toUpperCase() &&
+      this.product !== null
+    ) {
+      // Get the correct image path for the product.
+      this.correctImage = await this.productService.getFinalImageProductPath(
+        this.product.image,
+        this.product.title
+      );
+    } else this.product = null;
 
     this.isLoading = false;
   }

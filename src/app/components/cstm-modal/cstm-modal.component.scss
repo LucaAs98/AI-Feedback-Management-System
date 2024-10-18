@@ -1,3 +1,21 @@
+/** USAGE EXAMPLE 
+
+<app-cstm-modal #testModal [title]="'Title test'" (modalOpened)="testContent.onModalOpened()"
+    (modalClosed)="testContent.onModalClosed()">
+    <app-test-modal-content #testContent></app-test-modal-content>
+  </app-cstm-modal>
+
+  Put this into the ng-content
+  onModalOpened() {
+    console.log('The modal has been opened!');
+  }
+
+  onModalClosed() {
+    console.log('The modal has been closed!');
+  }
+
+  **/
+
 .extra-small {
   width: 200px;
 }

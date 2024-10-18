@@ -1,0 +1,24 @@
+<div class="statistic-modal-root">
+  <div class="statistic-content" *ngIf="!isLoading && productStatistics !== null">
+    <span class="average-score-text">Average score: {{productStatistics.averageScore.toFixed(2)}}</span>
+
+
+    <div class="chart-container">
+      <span class="chart-description">Distribution of Ratings: </span>
+      <canvas baseChart [data]="barChartData" [options]="barChartOptions" [type]="barChartType"
+        style="width: 100%; height: 400px;">
+      </canvas>
+    </div>
+
+    <span class="significant-summary-text">{{productStatistics.significantSummary}}</span>
+  </div>
+
+  <div class="statistic-content" *ngIf="!isLoading && productStatistics === null">
+    <span class="statistic-error">{{statisticError}}</span>
+  </div>
+
+
+  <div class="statistic-content" *ngIf="isLoading">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+</div>

@@ -12,14 +12,17 @@ export class CstmModalComponent {
   @Input() size: 'extra-small' | 'small' | 'medium' | 'large' | 'extra-large' =
     'medium';
 
-  @Output() initDataEvent = new EventEmitter();
+  @Output() modalOpened = new EventEmitter<void>();
+  @Output() modalClosed = new EventEmitter<void>();
 
   open() {
     this.isOpen = true;
+    this.modalOpened.emit();
   }
 
   close() {
     this.isOpen = false;
+    this.modalClosed.emit();
   }
 
   onBackdropClick() {

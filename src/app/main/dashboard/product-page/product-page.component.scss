@@ -18,11 +18,10 @@
 }
 
 .product-header {
-  width: 100%;
-}
-
-.go-back-arrow {
-  margin-left: auto;
+  width: 85%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .product-body {

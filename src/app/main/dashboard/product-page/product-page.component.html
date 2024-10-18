@@ -3,6 +3,7 @@
   <div class="product-content" *ngIf="!isLoading && product !== null">
     <div class="product-header">
       <span class="material-symbols-outlined go-back-arrow" (click)="goBack()" type="button">arrow_back</span>
+      <span class="material-symbols-outlined" type="button" [appOpenModal]="statisticsModal">monitoring</span>
     </div>
     <div class="product-body">
       <div class="product-image-section">
@@ -84,4 +85,10 @@
   <div class="product-content" *ngIf="!isLoading && product === null">
     <span class="text-danger">No product with this specific Id</span>
   </div>
+
+
+  <app-cstm-modal #statisticsModal [title]="'Product statistics'" (modalOpened)="statisticsContent.onModalOpened()"
+    (modalClosed)="statisticsContent.onModalClosed()" [size]="'large'">
+    <app-statistics-modal-content #statisticsContent [productId]="product?.id"></app-statistics-modal-content>
+  </app-cstm-modal>
 </div>

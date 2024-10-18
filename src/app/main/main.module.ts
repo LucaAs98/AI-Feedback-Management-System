@@ -11,6 +11,12 @@ import { ChooseProductBtnComponent } from './dashboard/components/choose-product
 import { ProductCardComponent } from './dashboard/components/product-card/product-card.component';
 import { ProductType } from '../types/product.types';
 import { ProductPageComponent } from './dashboard/product-page/product-page.component';
+import { StatisticsModalContentComponent } from './dashboard/product-page/components/statistics-modal-content/statistics-modal-content.component';
+import {
+  BaseChartDirective,
+  provideCharts,
+  withDefaultRegisterables,
+} from 'ng2-charts';
 
 const routes: Routes = [
   {
@@ -39,6 +45,7 @@ const routes: Routes = [
     ChooseProductBtnComponent,
     ProductCardComponent,
     ProductPageComponent,
+    StatisticsModalContentComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -46,7 +53,9 @@ const routes: Routes = [
     FormsModule,
     UtilsModule,
     ComponentsModule,
+    BaseChartDirective,
   ],
+  providers: [provideCharts(withDefaultRegisterables())],
   exports: [RouterModule],
 })
 export class MainModule {}
