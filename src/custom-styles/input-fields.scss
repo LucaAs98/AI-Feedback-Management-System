@@ -16,27 +16,24 @@ app-cstm-searchbar {
 
 .cstm-input-field {
     font-size: 1rem;
-
     padding: 0.6rem 2rem;
-
-    background-color: var(--background-950);
-    color: var(--text-50);
-
-    border: 1px solid var(--background-200);
+    background-color: var(--background-100);
+    color: var(--text-900);
+    border: 1px solid var(--background-300);
     border-radius: 0.8rem;
     outline: 0;
-
     transition: border-color 0.3s;
 }
 
-
 .cstm-input-field:focus {
-    background-color: var(--background-950);
+    background-color: var(--background-50);
+    border-color: var(--primary-400);
 }
 
 .cstm-input-field-label {
-    color: var(--text-950);
+    color: var(--text-700);
 }
+
 
 /* SEARCHBAR 
 
@@ -47,18 +44,18 @@ app-cstm-searchbar {
     <span class="material-symbols-outlined"> search </span>
   </button>
 </div>
-
 */
 .cstm-searchbar-container {
     display: flex;
     align-items: center;
     justify-content: start;
-
     padding: 0rem;
+    background-color: var(--background-100);
+    border-radius: 0.8rem;
 }
 
 .cstm-searchbar-container:focus-within {
-    background-color: var(--background-900);
+    background-color: var(--background-50);
 }
 
 .cstm-input-searchbar {
@@ -66,9 +63,14 @@ app-cstm-searchbar {
     width: 100%;
     padding: 0.6rem 2rem;
     padding-right: 0;
-
-    color: var(--text-50);
+    color: var(--text-900);
     background-color: transparent;
+}
+
+.cstm-input-searchbar::placeholder {
+    padding-left: 0.2rem;
+    color: var(--text-500);
+    opacity: 1;
 }
 
 .cstm-input-searchbar:focus {
@@ -79,5 +81,5 @@ app-cstm-searchbar {
 .btn-searchbar {
     padding: 0rem 1.5rem;
     background-color: transparent;
-    color: var(--text-50);
+    color: var(--text-500);
 }

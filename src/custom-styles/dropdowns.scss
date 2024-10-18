@@ -44,16 +44,15 @@
   padding: 0.5rem 1rem;
 
   border-radius: 0.8rem;
-  transition: background-color 0.2s, color 0.2s;
-
+  transition: background-color 0.2s;
   color: var(--text-950);
 }
 
 .cstm-dropdown-item:hover,
 .cstm-dropdown-item:focus,
 .cstm-dropdown-item:active {
-  background-color: var(--primary-700);
-  color: var(--text-50);
+  background-color: var(--primary-200);
   border: none;
   outline: none;
+  color: var(--text-950);
 }
