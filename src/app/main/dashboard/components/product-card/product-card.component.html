@@ -1,6 +1,6 @@
 <div class="product-card" *ngIf="product !== null" type="button" (click)="navigateToProduct(product.id)">
   <div class="product-image-container">
-    <img class="product-image" [src]="'assets/product-images/' + product.image"
+    <img class="product-image" [src]="'assets/product-images/' + product.image" loading="lazy"
       onerror="if (this.src != 'assets/product-images/no-product-image.png') this.src = 'assets/product-images/no-product-image.png'">
   </div>
   <div class="product-data">
