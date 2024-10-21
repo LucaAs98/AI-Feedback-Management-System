@@ -26,7 +26,6 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   feedback: string = '';
   _productId: number | null = null;
   product: CompleteProduct | null = null;
-  correctImage = this.productService.defaultImagePath; // Path for the default image
 
   analyzingError: string = '';
   isLoading: boolean = false;
@@ -81,16 +80,8 @@ export class ProductPageComponent implements OnInit, OnDestroy {
 
     this.product = await this.productService.getProductById(productId); // Retrieve product data using the product ID.
 
-    if (
-      this.product?.type.toUpperCase() === productType.toUpperCase() &&
-      this.product !== null
-    ) {
-      // Get the correct image path for the product.
-      this.correctImage = await this.productService.getFinalImageProductPath(
-        this.product.image,
-        this.product.title
-      );
-    } else this.product = null;
+    if (this.product?.type.toUpperCase() !== productType.toUpperCase())
+      this.product = null;
 
     this.isLoading = false;
   }

@@ -18,8 +18,6 @@ export class ProductService {
   getCategoriesGenreByTypeURL =
     environment.apiUrl + '/product/product-categories/';
 
-  defaultImagePath: string = 'assets/product-images/no-product-image.png';
-
   /**
    * Retrieves a product by its ID.
    *
@@ -75,36 +73,6 @@ export class ProductService {
       console.error('Error while retrieving products by type:', errorMessage);
 
       return []; // Returns empty array if an error occurred.
-    }
-  }
-
-  /**
-   * Retrieves the path to an image for a given product.
-   * Checks if the specified image exists by making a GET request.
-   * If the image does not exist, it returns a default image path.
-   *
-   * @param imageFileName - The file name of the product image.
-   * @param productTitle - The title of the product, used for logging purposes.
-   * @returns A promise that resolves to the image path (either the specified image or the default).
-   */
-  async getFinalImageProductPath(
-    imageFileName: string,
-    productTitle?: string
-  ): Promise<string> {
-    const testingPath = `assets/product-images/${imageFileName}`;
-    try {
-      // Attempts to retrieve the image by making a GET request.
-      const response = await axios.get(testingPath, {
-        responseType: 'arraybuffer',
-      });
-      return testingPath; // Returns the path if the image exists.
-    } catch (error) {
-      console.warn(
-        `Loading default image for product: ${
-          productTitle ? productTitle : imageFileName
-        }`
-      );
-      return this.defaultImagePath; //No image found, return default image path
     }
   }
 

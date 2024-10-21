@@ -54,10 +54,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
           return;
         }
 
-        // Fetch products based on the provided 'product_category' parameter from the route. Then Retrieve the local images for the specific product
+        // Fetch products based on the provided 'product_category' parameter from the route.
         this.products = await this.getProductsFromType(productType);
         this.genres = this.getGenresCategoriesOfType(); //Retrieves all the genres/categories of the products
-        await this.retrieveCorrectImagesForProducts();
 
         this.isLoadingProducts = false;
       })
@@ -112,19 +111,5 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return await this.productService.getProductsOfType(
       this.selectedProductType
     );
-  }
-
-  /**
-   * Asynchronously retrieves the correct image paths for all products in the `products` array.
-   * For each product, it updates the `image` property.
-   * @returns {Promise<void>} A promise that resolves when all images have been updated.
-   */
-  async retrieveCorrectImagesForProducts(): Promise<void> {
-    for (const product of this.products) {
-      product.image = await this.productService.getFinalImageProductPath(
-        product.image,
-        product.title
-      );
-    }
   }
 }
