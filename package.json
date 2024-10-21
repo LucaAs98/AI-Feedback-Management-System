@@ -6,9 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "install": "npm install && npm run install:ng2-charts",
-    "install:ng2-charts": "npm install ng2-charts || npm install ng2-charts --legacy-peer-deps"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
